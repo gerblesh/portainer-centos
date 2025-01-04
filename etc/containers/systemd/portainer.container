@@ -1,8 +1,9 @@
 [Unit]
 Description=Portainer Container
-After=local-fs.target 
-Wants=network-online.target 
+After=local-fs.target
+Wants=network-online.target
 After=network-online.target
+After=tailscaled.service
 
 [Container]
 Image=docker.io/portainer/portainer-ce:alpine-sts
@@ -10,9 +11,7 @@ ContainerName=portainer
 AutoUpdate=registry
 #Notify=true
 LogDriver=journald
-
-PublishPort=9443:9443
-PublishPort=9000:9000
+PublishPort=100.109.186.56:9443:9443
 Volume=/run/podman/podman.sock:/var/run/docker.sock:z
 Volume=portainer.volume:/data
 Volume=/:/host
