@@ -11,7 +11,7 @@ ln -sr /etc/containers/systemd/*.container /usr/lib/bootc/bound-images.d/
 
 # Packages
 
-dnf install -y cockpit cockpit-machines cockpit-podman cockpit-files libvirt tmux
+dnf install -y cockpit cockpit-machines cockpit-podman cockpit-files libvirt tmux vim firewalld
 
 # Tailscale
 dnf config-manager --add-repo https://pkgs.tailscale.com/stable/centos/9/tailscale.repo
@@ -25,4 +25,5 @@ systemctl enable podman.socket
 systemctl enable cockpit.socket
 systemctl enable rpm-ostreed-automatic.timer 
 systemctl enable tailscaled.service
-systemctl disable auditd.service
+systemctl enable auditd.service
+systemctl enable firewalld.service
